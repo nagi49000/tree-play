@@ -1,0 +1,12 @@
+name: tree-play-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyter
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - numpy
+  - pandas
+  - python=3.10
