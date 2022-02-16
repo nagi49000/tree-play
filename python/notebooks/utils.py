@@ -1,6 +1,9 @@
 import pandas as pd
 import datetime
 import numpy as np
+from sklearn.model_selection import cross_val_score
+from sklearn.utils import shuffle
+
 
 def get_data(path="../data/temps.csv"):
     df = pd.read_csv("../data/temps.csv")
@@ -17,3 +20,9 @@ def get_data(path="../data/temps.csv"):
     df_enc["unix_days"] = unix_days
     df_enc = df_enc.drop(columns=["year", "day"])
     return df_enc
+
+
+def get_cross_val_scores(clf, X, y, cv):
+    X_shuffle, y_shuffle = shuffle(X, y)
+    scores = cross_val_score(clf, X_shuffle, y_shuffle, cv=cv, scoring="neg_mean_absolute_error")
+    return scores
